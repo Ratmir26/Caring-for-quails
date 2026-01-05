@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Помощник по уходу за перепелами</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">🐦 Перепелиный Помощник</h1>
+                <nav class="nav">
+                    <button class="nav-btn active" data-section="dashboard">Главная</button>
+                    <button class="nav-btn" data-section="quails">Перепела</button>
+                    <button class="nav-btn" data-section="eggs">Яйца</button>
+                    <button class="nav-btn" data-section="care">Уход</button>
+                    <button class="nav-btn" data-section="calendar">Календарь</button>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="dashboard-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">🐦</div>
+                        <div class="stat-info">
+                            <h3 id="total-quails">0</h3>
+                            <p>Всего перепелов</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🥚</div>
+                        <div class="stat-info">
+                            <h3 id="total-eggs-today">0</h3>
+                            <p>Яиц сегодня</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-info">
+                            <h3 id="upcoming-tasks">0</h3>
+                            <p>Задач на сегодня</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💚</div>
+                        <div class="stat-info">
+                            <h3 id="healthy-quails">0</h3>
+                            <p>Здоровых</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h2>Последняя активность</h2>
+                    <div id="activity-list" class="activity-list"></div>
+                </div>
+            </section>
+
+            <!-- Quails Section -->
+            <section id="quails" class="section">
+                <div class="section-header">
+                    <h2>Мои перепела</h2>
+                    <button class="btn btn-primary" id="add-quail-btn">+ Добавить перепела</button>
+                </div>
+                <div id="quails-list" class="quails-grid"></div>
+            </section>
+
+            <!-- Eggs Section -->
+            <section id="eggs" class="section">
+                <div class="section-header">
+                    <h2>Учет яиц</h2>
+                    <button class="btn btn-primary" id="add-eggs-btn">+ Записать яйца</button>
+                </div>
+                <div class="eggs-stats">
+                    <div class="eggs-chart">
+                        <h3>Статистика за неделю</h3>
+                        <div id="eggs-chart" class="chart-container"></div>
+                    </div>
+                    <div class="eggs-history">
+                        <h3>История сбора</h3>
+                        <div id="eggs-history-list" class="history-list"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Care Section -->
+            <section id="care" class="section">
+                <h2>Руководство по уходу</h2>
+                <div class="care-cards">
+                    <div class="care-card">
+                        <div class="care-icon">🍽️</div>
+                        <h3>Кормление</h3>
+                        <ul>
+                            <li>Кормите 2-3 раза в день</li>
+                            <li>Используйте специальный комбикорм для перепелов</li>
+                            <li>Добавляйте зелень и овощи</li>
+                            <li>Обеспечьте постоянный доступ к чистой воде</li>
+                        </ul>
+                    </div>
+                    <div class="care-card">
+                        <div class="care-icon">🏠</div>
+                        <h3>Содержание</h3>
+                        <ul>
+                            <li>Температура: 18-22°C</li>
+                            <li>Влажность: 60-70%</li>
+                            <li>Освещение: 14-16 часов в день</li>
+                            <li>Плотность: 1 перепел на 100-150 см²</li>
+                        </ul>
+                    </div>
+                    <div class="care-card">
+                        <div class="care-icon">🥚</div>
+                        <h3>Сбор яиц</h3>
+                        <ul>
+                            <li>Собирайте яйца 2-3 раза в день</li>
+                            <li>Храните при температуре 8-12°C</li>
+                            <li>Переворачивайте яйца при хранении</li>
+                            <li>Срок хранения: до 30 дней</li>
+                        </ul>
+                    </div>
+                    <div class="care-card">
+                        <div class="care-icon">💊</div>
+                        <h3>Здоровье</h3>
+                        <ul>
+                            <li>Регулярно осматривайте птиц</li>
+                            <li>Следите за чистотой клетки</li>
+                            <li>Проводите профилактику заболеваний</li>
+                            <li>Изолируйте больных птиц</li>
+                        </ul>
+                    </div>
+                    <div class="care-card">
+                        <div class="care-icon">🐣</div>
+                        <h3>Новорождённые птенцы</h3>
+                        <ul>
+                            <li>Температура в брудере: 35-37°C первые дни</li>
+                            <li>Постепенно снижайте температуру на 2-3°C в неделю</li>
+                            <li>Используйте стартовый комбикорм для птенцов</li>
+                            <li>Обеспечьте постоянное освещение первые 2 недели</li>
+                            <li>Кормите 5-6 раз в день небольшими порциями</li>
+                            <li>Следите за чистотой поилок и кормушек</li>
+                            <li>Изолируйте слабых и больных птенцов</li>
+                            <li>Переводите на взрослый рацион с 3-4 недель</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chat Section -->
+            <section id="chat" class="section">
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <div class="chat-header-top">
+                            <div>
+                                <h2>💬 AI Помощник по перепелам</h2>
+                                <p class="chat-subtitle">Задайте любой вопрос об уходе за перепелами</p>
+                            </div>
+                            <button class="btn btn-secondary" id="chat-settings-btn">⚙️ Настройки</button>
+                        </div>
+                    </div>
+                    <div id="chat-messages" class="chat-messages">
+                        <div class="chat-message bot-message">
+                            <div class="message-avatar">🤖</div>
+                            <div class="message-content">
+                                <p>Привет! Я ваш AI помощник по уходу за перепелами. Могу помочь с вопросами о кормлении, содержании, здоровье птиц, инкубации яиц и многом другом. Чем могу помочь?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-container">
+                        <form id="chat-form" class="chat-form">
+                            <input 
+                                type="text" 
+                                id="chat-input" 
+                                class="chat-input" 
+                                placeholder="Задайте вопрос об уходе за перепелами..."
+                                autocomplete="off"
+                            >
+                            <button type="submit" class="chat-send-btn" id="chat-send-btn">
+                                <span>Отправить</span>
+                                <span class="send-icon">✈️</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calendar Section -->
+            <section id="calendar" class="section">
+                <div class="section-header">
+                    <h2>Календарь ухода</h2>
+                    <button class="btn btn-primary" id="add-task-btn">+ Добавить задачу</button>
+                </div>
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <button class="btn-icon" id="prev-month">‹</button>
+                        <h3 id="current-month"></h3>
+                        <button class="btn-icon" id="next-month">›</button>
+                    </div>
+                    <div id="calendar-grid" class="calendar-grid"></div>
+                </div>
+                <div class="tasks-list">
+                    <h3>Задачи на сегодня</h3>
+                    <div id="today-tasks" class="tasks-container"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="chat-settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Настройки ChatGPT</h2>
+            <form id="chat-settings-form">
+                <div class="form-group">
+                    <label>OpenAI API Key</label>
+                    <input 
+                        type="password" 
+                        id="openai-api-key" 
+                        placeholder="sk-..."
+                        autocomplete="off"
+                    >
+                    <small class="form-hint">
+                        Введите ваш API ключ от OpenAI. Без ключа будет использоваться простая база знаний.
+                        <a href="https://platform.openai.com/api-keys" target="_blank">Получить ключ →</a>
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="use-chatgpt" checked>
+                        Использовать ChatGPT API
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="quail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="quail-modal-title">Добавить перепела</h2>
+            <form id="quail-form">
+                <input type="hidden" id="quail-edit-id" value="">
+                <div class="form-group">
+                    <label>Имя/Номер</label>
+                    <input type="text" id="quail-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Порода</label>
+                    <select id="quail-breed">
+                        <option value="">Выберите породу</option>
+                        <option value="Японский перепел">Японский перепел</option>
+                        <option value="Фараон">Фараон</option>
+                        <option value="Техасский белый">Техасский белый</option>
+                        <option value="Эстонский перепел">Эстонский перепел</option>
+                        <option value="Маньчжурский золотистый">Маньчжурский золотистый</option>
+                        <option value="Мраморный">Мраморный</option>
+                        <option value="Феникс">Феникс</option>
+                        <option value="Смокинговый">Смокинговый</option>
+                        <option value="Английский белый">Английский белый</option>
+                        <option value="Английский чёрный">Английский чёрный</option>
+                        <option value="Китайский расписной">Китайский расписной</option>
+                        <option value="Калифорнийский">Калифорнийский</option>
+                        <option value="Другая">Другая</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Дата рождения/приобретения</label>
+                    <input type="date" id="quail-date" required>
+                </div>
+                <div class="form-group">
+                    <label>Состояние здоровья</label>
+                    <select id="quail-health" required>
+                        <option value="healthy">Здоров</option>
+                        <option value="sick">Болен</option>
+                        <option value="recovering">Выздоравливает</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Пол</label>
+                    <select id="quail-sex" required>
+                        <option value="unknown">Не указано</option>
+                        <option value="female">Самка</option>
+                        <option value="male">Самец</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Примечания</label>
+                    <textarea id="quail-notes" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="eggs-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Записать яйца</h2>
+            <form id="eggs-form">
+                <div class="form-group">
+                    <label>Количество яиц</label>
+                    <input type="number" id="eggs-count" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label>Дата</label>
+                    <input type="date" id="eggs-date" required>
+                </div>
+                <div class="form-group">
+                    <label>Время</label>
+                    <input type="time" id="eggs-time" required>
+                </div>
+                <div class="form-group">
+                    <label>Примечания</label>
+                    <textarea id="eggs-notes" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Добавить задачу</h2>
+            <form id="task-form">
+                <div class="form-group">
+                    <label>Название задачи</label>
+                    <input type="text" id="task-title" required>
+                </div>
+                <div class="form-group">
+                    <label>Дата</label>
+                    <input type="date" id="task-date" required>
+                </div>
+                <div class="form-group">
+                    <label>Время</label>
+                    <input type="time" id="task-time">
+                </div>
+                <div class="form-group">
+                    <label>Тип задачи</label>
+                    <select id="task-type" required>
+                        <option value="feeding">Кормление</option>
+                        <option value="cleaning">Уборка</option>
+                        <option value="health">Проверка здоровья</option>
+                        <option value="eggs">Сбор яиц</option>
+                        <option value="other">Другое</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Примечания</label>
+                    <textarea id="task-notes" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
